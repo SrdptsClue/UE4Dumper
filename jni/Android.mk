@@ -20,6 +20,17 @@ ifeq ($(TARGET_ARCH_ABI), arm64-v8a)
 
 endif
 
+ifeq ($(TARGET_ARCH_ABI), x86_64)
+    LOCAL_MODULE := ue4dumper64
+
+	LOCAL_SRC_FILES := ELF64/fix.cpp \
+                       kmods.cpp \
+
+    LOCAL_CPP_INCLUDES += $(LOCAL_PATH)
+    LOCAL_CPP_INCLUDES += $(LOCAL_PATH)/ELF64
+
+endif
+
 ifeq ($(TARGET_ARCH_ABI), armeabi-v7a)
     LOCAL_MODULE := ue4dumper
 
@@ -35,7 +46,6 @@ endif
 LOCAL_LDLIBS += -L$(SYSROOT)/usr/lib -lz -llog
 
 include $(BUILD_EXECUTABLE)
-
 
 
 
